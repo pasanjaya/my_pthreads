@@ -1,3 +1,9 @@
+/*
+
+Create an array of 1 – 1000 and calculate the sum of it using two threads in C programming language.
+
+*/
+
 #include <stdio.h>
 #include <pthread.h>
 
