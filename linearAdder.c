@@ -20,7 +20,7 @@ void* adder(void* tid){
         tempSum += array[i]; 
     }
 
-    pthread_mutex_lock(&mutex);
+    pthread_mutex_lock(&mutex); // lock the critical section
     printf("tid: %d tempsum: %d\n", *(int*)tid, tempSum);
     sum += tempSum;
     pthread_mutex_unlock(&mutex);
@@ -52,24 +52,13 @@ int main(int argc, char const *argv[])
         
 
     }
+    // join main and forked threads
     for(int i = 0; i < NUM_THREADS; i++){
         int tj = pthread_join(threads[i], NULL);
         if(tj != 0) perror("Error Occured\n");
     }
 
-
     printf("Sum is: %d\n", sum);
-
-
-
-    // print the array
-    // int *p;
-    // p = array;
-    // while(p != array+ARRAYSIZE){
-    //     printf("%d ", *p);
-    //     p++;
-    // }
-    // printf("\n");
 
     return 0;
 }
